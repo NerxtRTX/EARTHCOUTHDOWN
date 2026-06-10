@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EARTHCOUNTDOWN</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=BBH+Bartle&family=Major+Mono+Display&family=Ysabeau+SC:wght@1..1000&display=swap" rel="stylesheet">
+
+    <style>
+
+        bro{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            min-height: 100vh;
+
+            background-color: rgb(15, 15, 15);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: azure;
+            padding: 40px;
+        }
+
+        .container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            gap: 30px;
+
+            text-align: center;
+
+            max-width: 1200px;
+        }
+
+        h1{
+            font-family: 'BBH Bartle';
+            font-size: 60px;
+
+            color: white;
+
+            letter-spacing: 4px;
+        }
+
+        h3{
+            font-family: 'Ysabeau SC';
+
+            font-size: 24px;
+
+            color: rgb(200, 200, 200);
+        }
+
+        h5{
+            font-family: 'Major Mono Display';
+
+            font-size: 14px;
+            line-height: 1.8;
+
+            max-width: 900px;
+
+            color: rgb(170, 170, 170);
+        }
+
+        h4{
+            font-family: 'Major Mono Display';
+
+            color: rgb(255, 50, 50);
+
+            font-size: 18px;
+
+            text-shadow: 0px 0px 10px red;
+        }
+
+        .cards{
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+
+            flex-wrap: wrap;
+
+            margin-top: 20px;
+        }
+
+        .card{
+            width: 240px;
+
+            background: rgb(35, 35, 35);
+
+            padding: 25px;
+
+            border-radius: 18px;
+
+            
+
+            transition: 0.3s;
+        }
+
+        .card:hover{
+            transform: translateY(-8px);
+
+            
+        }
+
+        .card h2{
+            font-family: 'Ysabeau SC';
+
+            margin-bottom: 15px;
+
+            color: white;
+        }
+
+        .valor{
+            font-size: 35px;
+
+            font-family: 'Ysabeau SC';
+
+            color: rgb(255, 70, 70);
+
+            margin-bottom: 12px;
+        }
+
+        .card span{
+            font-family: 'Ysabeau SC';
+
+            color: rgb(180, 180, 180);
+        }
+
+        #contador{
+            margin-top: 40px;
+
+            font-size: 42px;
+
+            color: red;
+
+            font-family: 'Major Mono Display';
+
+            text-shadow: 0px 0px 18px red;
+        }
+.game-box{
+
+    margin-top: 40px;
+
+    background: rgb(25, 25, 25);
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    width: 400px;
+
+    box-shadow: 0px 0px 20px rgba(0,255,100,0.1);
+
+}
+
+.game-box h2{
+
+    font-family: 'Ysabeau SC';
+
+    margin-bottom: 20px;
+
+}
+
+.barra{
+  width: 100%;
+  
+    height: 25px;
+     background: rgb(50,50,50);  border-radius: 20px;
+
+    overflow: hidden;
+    margin-bottom: 15px;
+
+}
+
+#terra{
+
+  width: 20%;
+
+    height: 100%;
+    bacKground: limegreen;
+    transition: 0.4s;
+}
+
+.game-box button{
+
+margin-top: 15px;
+
+padding: 12px 20px;
+      border: none;
+
+      border-radius: 12px;
+
+     background: limegreen;
+
+ color: black;
+
+    font-weight: bold;
+    cursor: pointer;
+  transition: 0.3s;
+}
+
+.game-box button:hover{
+
+    transform: scale(1.05);
+
+}
+
+#mensagem{
+
+    margin-top: 15px;
+
+    font-family: 'Ysabeau SC';
+
+    color: rgb(180,180,180);
+
+}
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>EARTHCOUNTDOWN</h1>
+
+        <h3>cada segundo conta.</h3>
+
+        <h5>
+            todos os dias, florestas desaparecem,
+            oceanos aquecem e espécies entram em extinção.
+        </h5>
+
+        <h4>o relógio continua correndo</h4>
+
+        <div class="cards">
+
+            <div class="card">
+                <h2>TEMPERATURA</h2>
+                <p class="valor" id="temperatura">...</p>
+                <span>temperatura atual da região</span>
+            </div>
+
+            <div class="card">
+                <h2>DESMATAMENTO</h2>
+                <p class="valor">196 km²</p>
+                <span>desmatamento atual</span>
+            </div>
+
+            <div class="card">
+                <h2>CO₂</h2>
+                <p class="valor">2,145 bilhões</p>
+                <span>CO₂ na atmosfera</span>
+            </div>
+
+        </div>
+
+        <h2 id="contador"></h2>
+<div class="game-box">
+
+    <h2>MISSÕES GLOBAIS</h2>
+
+    <div class="barra">
+        <div id="terra"></div>
+    </div>
+
+    <p id="porcentagem">Saúde da Terra: 20%</p>
+
+    <button onclick="ajudarPlaneta()">PLANTAR ÁRVORE</button>
+
+    <p id="mensagem"></p>
+
+</div>
+
+<div class="game-box">
+
+    <h2>DESCARTE CONSCIENTE</h2>
+
+    <p>
+        Encontre locais e informações sobre reciclagem.
+    </p>
+
+    <button onclick="window.open('https://www.ecycle.com.br', '_blank')">
+        ECYCLE
+    </button>
+
+    <button onclick="window.open('https://www.greenpeace.org/brasil/', '_blank')">
+        GREENPEACE
+    </button>
+
+    <button onclick="window.open('https://www.wwf.org.br/', '_blank')">
+        WWF
+    </button>
+
+</div>
+
+
+
+
+
+    </div>
+
+
+    <script>
+
+        const dataFinal = new Date("2035-01-01 00:00:00").getTime();
+
+        function atualizarContador(){
+
+            const agora = new Date().getTime();
+
+            const distancia = dataFinal - agora;
+
+            const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+
+            const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+            const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+
+            const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+            document.getElementById("contador").innerHTML =
+            `${dias}D ${horas}H ${minutos}M ${segundos}S`;
+        }
+
+        setInterval(atualizarContador, 1000);
+
+        atualizarContador();
+
+    </script>
+<script>
+
+async function pegarTemperatura() {
+
+    const url =
+    "https://api.open-meteo.com/v1/forecast?latitude=-21.17&longitude=-47.81&current=temperature_2m";
+
+    const resposta = await fetch(url);
+
+    const dados = await resposta.json();
+
+    const temperatura = Math.round(dados.current.temperature_2m);
+
+    document.getElementById("temperatura").innerHTML =
+    `${temperatura}°C`;
+}
+
+pegarTemperatura();
+
+</script>
+
+
+<script>
+
+let vidaTerra = 20;
+
+function ajudarPlaneta(){
+
+    if(vidaTerra < 100){
+
+        vidaTerra += 10;
+
+        document.getElementById("terra").style.width =
+        vidaTerra + "%";
+
+        document.getElementById("porcentagem").innerHTML =
+        `Saúde da Terra: ${vidaTerra}%`;
+
+        document.getElementById("mensagem").innerHTML =
+        "Você ajudou o planeta 🌎";
+
+    }
+
+    if(vidaTerra >= 100){
+
+        document.getElementById("mensagem").innerHTML =
+        "PLANETA ESTABILIZADO.";
+    }
+
+}
+
+</script>
+
+</body>
+</html>
